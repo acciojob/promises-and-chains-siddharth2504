@@ -6,17 +6,17 @@ let age = document.querySelector("#age")
 form.addEventListener("submit", (e) => {
 	e.preventDefault()
 	if(name.value === "" || age.value === ""){
-		alert("Please enter valid details.")
+		alert("Please enter valid details")
 		return
 	}else{
 		let prom = new Promise((res, rej) => {
 	        if(Number(age.value) > 18){
 	        	setTimeout(() => {
-	        		res("Welcome, You can vote.")
+	        		res(`Welcome, ${name.value}. You can vote.`)
 	        	}, 4000)
 	        }else{
 	        	setTimeout(() => {
-	        		rej("Oh sorry, You aren't old enough.")
+	        		rej(`Oh sorry ${name.value}. You aren't old enough.`)
 	        	}, 4000)
 	        }
         })    
