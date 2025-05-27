@@ -3,28 +3,49 @@ let form = document.querySelector("#form")
 let name = document.querySelector("#name")
 let age = document.querySelector("#age")
 
-form.addEventListener("submit", (e) => {
-	e.preventDefault()
-	if(name.value === "" || age.value === ""){
-		alert("Please enter valid details")
+
+
+form.addEventListener("submit",handleSubmit)
+
+function handleSubmit(e){
+	e.preventDefault();
+
+		let nameV = name.value.trim();
+		let ageV =parseInt(age.value.trim());
+	if(nameV==""||ageV==""){
+aler("Please enter valid details")
 		return
-	}else{
-		let prom = new Promise((res, rej) => {
-	        if(Number(age.value) > 18){
-	        	setTimeout(() => {
-	        		res(`Welcome, ${name.value}. You can vote.`)
-	        	}, 4000)
-	        }else{
-	        	setTimeout(() => {
-	        		rej(`Oh sorry ${name.value}. You aren't old enough.`)
-	        	}, 4000)
-	        }
-        })    
-		prom
-		.then(data => alert(data))
-		.catch(data => alert(data))
 	}
-})
+
+	handlePromise(nameV,ageV)
+
+
+	
+
+	
+}
+
+
+function handlePromise(name,age){
+
+	let p = new Promise((resolve,reject)=>{
+			if(age>18){
+				setTimeout(()=>{
+					resolve("Welcome, You can vote.")
+				},4000)
+			}
+		else{
+			setTimeout(()=>{
+				reject("Oh sorry . You aren't old enough")
+			},4000)
+		}
+	})
+
+	p.then((res)=>{
+		alert(res)
+	})
+	
+}
 
 
 
